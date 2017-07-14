@@ -19,6 +19,8 @@ export class MovieComponent {
     // Rating list array.
     movieRatings: IRating[] = [];
 
+    // Search Field variable,
+    private searchMovie: string;
 
     // Declaring myForm of Type FormGroup
     formMovie: FormGroup;
@@ -40,6 +42,7 @@ export class MovieComponent {
 
       this.listOfMovies = this._movieService.getMovieList();
       this.movieRatings = this._ratingService.getRatings();
+      this.searchMovie = ""; // Initialising search field value.
     }
 
     // Adding movie to movie list

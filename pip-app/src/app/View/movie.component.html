@@ -80,6 +80,9 @@
                 <!-- Show User list when it has records-->
                 <table *ngIf="listOfMovies.length > 0" class="table table-striped table-bordered">
                     <tr>
+                        <td colspan="7"> <input type="text" name="searchMovie" [(ngModel)]="searchMovie" class="form-control" placeholder=" Search Movie"></td>
+                    </tr>
+                    <tr>
                         <th> Index</th>
                         <th> Movie json</th>
                         <th> Movie Poster</th>
@@ -89,12 +92,13 @@
                         <th> Release Date</th>
                     </tr>
                     <!-- Looping through userlist-->
-                    <tr *ngFor="let movie of listOfMovies; let i=index;">
+                    <tr *ngFor="let movie of (listOfMovies | searchBy : searchMovie); let i=index;">
+
                         <td>{{i + 1}}</td>
                         <td>{{movie | json}}</td> <!--Movie details in Json formar-->
                         <td><img [src]="movie.imageUrl" [alt]="movie.name" width="75" /></td>
-                        <td>{{movie.name | uppercase}}</td> <!--Movie name in uppercase-->
-                        <td>{{movie.description | uppercase}}</td> <!--Movie description in uppercase-->
+                        <td>{{movie.name | capitalise}}</td> <!--Movie name in capitalise format-->
+                        <td>{{movie.description | capitalise}}</td> <!--Movie description in capitalise format-->
                         <td>{{movie.movieRatings | uppercase}}</td> <!--Movie description in uppercase-->
                         <td>{{movie.releaseDate | date :'shortDate'}}</td> <!-- Formating date using pipes -->
                     </tr>
